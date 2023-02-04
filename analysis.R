@@ -16,3 +16,6 @@ all <- list(Agla, Trausti, Hjalti, Jónas, Harpa, Kata)
 names(all) <- c("Agla", "Trausti", "Hjalti", "Jónas", "Harpa", "Kata")
 
 
+
+
+
