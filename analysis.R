@@ -1,3 +1,6 @@
+library(tidyverse)
+library(googlesheets4)
+
 loadCocktail <- function(worksheet, participant) {
   read_sheet(worksheet, sheet = participant) %>%
     drop_na()
@@ -15,5 +18,7 @@ all <- list(Agla, Trausti, Hjalti, Jónas, Harpa, Kata)
 
 names(all) <- c("Agla", "Trausti", "Hjalti", "Jónas", "Harpa", "Kata")
 
-
-
+ggplot(data = filter(gather(all$Agla), key != "Dómari"))+
+  geom_density(aes(x = as.numeric(value), fill = key), alpha = 0.4)+
+  scale_x_continuous(limits = c(0,5))
+  
