@@ -47,7 +47,7 @@ kable(Kata, caption = "Kata")
 
 Bro say less
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.height = 10, fig.width = 10}
 allSingle <- all %>%
   bind_rows(.id = "id") %>%
   pivot_longer(where(is.numeric)) %>%
