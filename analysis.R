@@ -19,7 +19,6 @@ all <- list(Agla, Trausti, Hjalti, Jónas, Harpa, Kata)
 names(all) <- c("Agla", "Trausti", "Hjalti", "Jónas", "Harpa", "Kata")
 
 allSingle <- all %>%
-  mutate(Dómari = NULL) %>%
   bind_rows(.id = "id") %>%
   pivot_longer(where(is.numeric)) %>%
   group_by(id, name) %>%

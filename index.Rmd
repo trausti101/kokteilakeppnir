@@ -7,8 +7,60 @@ output: html_document
 
 Ég hef haft óttalega lítið að gera seinustu daga meðan Harpa hefur verið að læra svona mikið og ég ákvað að henda í okkur smá *statistical analysis* af kokteilakeppninni okkar. *Af hverju?* you might ask... uhhhhh I dunno, github pages er cool og ég hef verið að læra R. Sue me. Also sorry að þessi síða lúkkar eins og HTML skólaproject frá 1999, svo lúkkar bara R markdown.
 
-Ef þið viljið sjá datað hef ég hent því [hingað](https://docs.google.com/spreadsheets/d/1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8/edit?usp=sharing). Note að hver dálkur sýnir hvað þið fenguð í stig, eftir dómurum, sem er öfugt við það sem við skrifuðum á blöðin. Svo er ein röðin tóm í hverju sheet
+Ef þið viljið sjá datað hef ég hent því [hingað](https://docs.google.com/spreadsheets/d/1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8/edit?usp=sharing). Note að hver dálkur sýnir hvað þið fenguð í stig, eftir dómurum, sem er öfugt við það sem við skrifuðum á blöðin. Svo er ein röðin tóm í hverju sheet af því að þið gáfuð ykkur ekki sjálfum stig lol.
 
-```{r}
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(googlesheets4)
+library(knitr)
 
+loadCocktail <- function(worksheet, participant) {
+  read_sheet(worksheet, sheet = participant) %>%
+    drop_na()
+}
+
+Agla <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Agla")
+Trausti <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Trausti") 
+Hjalti <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Hjalti") 
+Jónas <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Jónas") 
+Harpa <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Harpa") 
+Kata <- loadCocktail("1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8", "Kata") 
+
+
+all <- list(Agla, Trausti, Hjalti, Jónas, Harpa, Kata)
+
+names(all) <- c("Agla", "Trausti", "Hjalti", "Jónas", "Harpa", "Kata")
 ```
+
+Ok kids byrjum á því að skoða öll stigin
+
+```{r echo = FALSE, results = 'asis'}
+kable(Agla, caption = "Agla")
+kable(Trausti, caption = "Trausti")
+kable(Hjalti, caption = "Hjalti")
+kable(Jónas, caption = "Jónas" )
+kable(Harpa, caption = "Harpa")
+kable(Kata, caption = "Kata")
+```
+
+*"Næs, næs, ok, það væri samt fucking hellað að geta séð þetta myndrænt"*
+
+Bro say less
+
+```{r echo=FALSE}
+allSingle <- all %>%
+  bind_rows(.id = "id") %>%
+  pivot_longer(where(is.numeric)) %>%
+  group_by(id, name) %>%
+  arrange(.by_group = TRUE)
+
+ggplot(data = allSingle)+
+  geom_density(aes(x = as.numeric(value), fill = name), alpha = 0.4)+
+  scale_x_continuous(limits = c(0,5))+
+  labs(x = "Stig", fill = "Flokkur", title = "Stig fyrir hvern drykk", y = "")+
+  facet_wrap(~id)+
+  theme_light()
+  
+```
+
+Stay updated fyrir meira content, eins og winner overall, winner í hverjum flokki, breakdown af hversu mikil stig þið gáfuð + the dreaded *Simon Cowell* fyrir fæst stig gefn
