@@ -1,0 +1,14 @@
+---
+title: "Kokteilakeppni 4. feb"
+output: html_document
+---
+
+# Hello kids
+
+Ég hef haft óttalega lítið að gera seinustu daga meðan Harpa hefur verið að læra svona mikið og ég ákvað að henda í okkur smá *statistical analysis* af kokteilakeppninni okkar. *Af hverju?* you might ask... uhhhhh I dunno, github pages er cool og ég hef verið að læra R. Sue me. Also sorry að þessi síða lúkkar eins og HTML skólaproject frá 1999, svo lúkkar bara R markdown.
+
+Ef þið viljið sjá datað hef ég hent því [hingað](https://docs.google.com/spreadsheets/d/1W29bIe_DUZgTCk9h8yACCU380T6xmR7NblG0IQF-tH8/edit?usp=sharing). Note að hver dálkur sýnir hvað þið fenguð í stig, eftir dómurum, sem er öfugt við það sem við skrifuðum á blöðin. Svo er ein röðin tóm í hverju sheet
+
+```{r}
+
+```

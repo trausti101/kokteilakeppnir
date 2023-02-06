@@ -28,7 +28,8 @@ allSingle <- all %>%
 ggplot(data = allSingle)+
   geom_density(aes(x = as.numeric(value), fill = name), alpha = 0.4)+
   scale_x_continuous(limits = c(0,5))+
-  labs(x = "Stig", fill = "Flokkur")+
-  facet_wrap(~id)
+  labs(x = "Stig", fill = "Flokkur", title = "Stig fyrir hvern drykk", y = "")+
+  facet_wrap(~id)+
+  theme_light()
   
   
