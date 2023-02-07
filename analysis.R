@@ -25,10 +25,12 @@ allSingle <- all %>%
   arrange(.by_group = TRUE)
 
 ggplot(data = allSingle)+
-  geom_density(aes(x = as.numeric(value), fill = name), alpha = 0.4)+
+  geom_density(aes(x = as.numeric(value), fill = name), alpha = 0.5)+
   scale_x_continuous(limits = c(0,5))+
   labs(x = "Stig", fill = "Flokkur", title = "Stig fyrir hvern drykk", y = "")+
-  facet_wrap(~id)+
+  facet_wrap(vars(id))+
   theme_light()
+
+
   
   
